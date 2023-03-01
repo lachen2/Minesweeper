@@ -15,7 +15,7 @@ void setup ()
     
     buttons = new MSButton[NUM_ROWS][NUM_COLS];
     for (int i = 0; i < NUM_ROWS; i ++)
-      for (int j = 0; j < NUM_ROWS; j ++)
+      for (int j = 0; j < NUM_COLS; j ++)
         buttons[i][j] = new MSButton(i, j);
     
     
@@ -41,16 +41,27 @@ public void draw ()
 }
 public boolean isWon()
 {
-    return false;
+    for (int r = 0; r < NUM_ROWS; r ++) {
+      for (int c = 0; c < NUM_COLS; c ++) {
+        if (isValid(r, c) && !mines.contains(buttons[r][c]) && buttons[r][c].clicked == false)
+            return false;
+      }
+    }
+    return true;
 }
 public void displayLosingMessage()
 {
-    //your code here
-    System.out.println("You lose");
+    noLoop();
+    for (int i = 0; i < mines.size(); i ++)
+      mines.get(i).setLabel("BOMB");
+    fill(244, 8, 9);
+    text("You Lose", 200, 200);
 }
 public void displayWinningMessage()
 {
-    System.out.println("You win");
+    noLoop();
+    buttons[0][0].setLabel("YOU WON");
+    
 }
 public boolean isValid(int r, int c)
 {
@@ -72,7 +83,7 @@ public class MSButton
 {
     private int myRow, myCol;
     private float x,y, width, height;
-    private boolean clicked, flagged;
+    private boolean clicked, flagged, cantChange;
     private String myLabel;
     
     public MSButton ( int row, int col )
@@ -131,18 +142,20 @@ public class MSButton
             //change tile to red if tile clicked is a mine
             fill(255,0,0);
             
-        else if(clicked)
+        else if(clicked) {
             //when clicked is true, set the tiles to whiteish grey
             fill( 200 );
-        else 
+            cantChange = true;
+        }
+        else
             //set tiles to dark grey
             fill( 100 );
 
         rect(x, y, width, height);
-        fill(0);
+        fill(0, 90, 150);
         text(myLabel,x+width/2,y+height/2);
     }
-    public void setLabel(String newLabel)
+        public void setLabel(String newLabel)
     {
         myLabel = newLabel;
     }
