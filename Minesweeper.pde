@@ -105,7 +105,7 @@ public class MSButton
         clicked = true;
         
         if (mouseButton == RIGHT) {
-          if (flagged == true)
+          if (isFlagged() == true)
             //unflag the tile if flagged
             flagged = false;
             
@@ -115,7 +115,7 @@ public class MSButton
             clicked = false;
           }
           
-          else if (mines.contains(this))
+          else if (isFlagged() == false && mines.contains(this))
             //you lose if tile clicked is a mine
             displayLosingMessage();
             
@@ -123,30 +123,38 @@ public class MSButton
             setLabel(countMines(myRow, myCol));
             
           else { 
-            for (int r = myRow - 1; r <= myRow + 1; r ++)
-              for (int c = myCol - 1; c <= myCol + 1; c ++)
+            for (int r = myRow - 1; r <= myRow + 1; r ++) {
+              for (int c = myCol - 1; c <= myCol + 1; c ++){
                 //if there are no mines around the button pressed, review those buttons around it
                 if (isValid(r, c) && buttons[r][c].clicked == false) {
                   buttons[r][c].mousePressed();
                 }
+              }
+                }
           }
     }
     
-    public void draw () 
-    {    
-        if (isFlagged())
+    public void draw () {
+      fill(0, 90, 150);
+      if (cantChange == true) {
+            //if you already clicked on the tile, the color stays the same, whiteish gray
+           fill(200);
+         }
+            
+        else if (isFlagged())
             //change tile to black to flag
             fill(0);
             
         else if(clicked && mines.contains(this)) 
             //change tile to red if tile clicked is a mine
             fill(255,0,0);
-            
+
         else if(clicked) {
             //when clicked is true, set the tiles to whiteish grey
-            fill( 200 );
             cantChange = true;
+            fill( 200 );
         }
+        
         else
             //set tiles to dark grey
             fill( 100 );
@@ -154,6 +162,7 @@ public class MSButton
         rect(x, y, width, height);
         fill(0, 90, 150);
         text(myLabel,x+width/2,y+height/2);
+
     }
         public void setLabel(String newLabel)
     {
