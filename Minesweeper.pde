@@ -50,11 +50,11 @@ public boolean isWon()
 }
 public void displayLosingMessage()
 {
-    noLoop();
     for (int i = 0; i < mines.size(); i ++)
       mines.get(i).setLabel("BOMB");
     fill(244, 8, 9);
-   // text("You Lose", 200, 200);
+    text("You Lose", 200, 200);
+    noLoop();
 }
 public void displayWinningMessage()
 {
