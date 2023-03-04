@@ -60,7 +60,7 @@ public void displayLosingMessage()
 public void displayWinningMessage()
 {
     buttons[0][0].setLabel("YOU WON");
-    noLoop();
+    //noLoop();
     text("You Won", 200, 200);
     
 }
