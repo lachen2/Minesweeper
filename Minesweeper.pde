@@ -18,7 +18,6 @@ void setup ()
       for (int j = 0; j < NUM_COLS; j ++)
         buttons[i][j] = new MSButton(i, j);
     
-    
     setMines();
 }
 public void setMines()
@@ -50,8 +49,10 @@ public boolean isWon()
 }
 public void displayLosingMessage()
 {
-    for (int i = 0; i < mines.size(); i ++)
+    for (int i = 0; i < mines.size(); i ++) {
       mines.get(i).setLabel("BOMB");
+      
+      }
     fill(244, 8, 9);
     text("You Lose", 200, 200);
     noLoop();
@@ -128,6 +129,7 @@ public class MSButton
                 //if there are no mines around the button pressed, review those buttons around it
                 if (isValid(r, c) && buttons[r][c].clicked == false) {
                   buttons[r][c].mousePressed();
+                   text(myLabel,x+width/2,y+height/2);
                 }
               }
                 }
