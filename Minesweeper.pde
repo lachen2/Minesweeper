@@ -55,7 +55,7 @@ public void displayLosingMessage()
       }
     fill(244, 8, 9);
     text("You Lose", 200, 200);
-    noLoop();
+  // noLoop();
 }
 public void displayWinningMessage()
 {
@@ -129,7 +129,6 @@ public class MSButton
                 //if there are no mines around the button pressed, review those buttons around it
                 if (isValid(r, c) && buttons[r][c].clicked == false) {
                   buttons[r][c].mousePressed();
-                   text(myLabel,x+width/2,y+height/2);
                 }
               }
                 }
