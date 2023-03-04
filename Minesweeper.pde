@@ -58,8 +58,9 @@ public void displayLosingMessage()
 }
 public void displayWinningMessage()
 {
+    //buttons[0][0].setLabel("YOU WON");
+    text("You Won", 200, 200);
     noLoop();
-    buttons[0][0].setLabel("YOU WON");
     
 }
 public boolean isValid(int r, int c)
