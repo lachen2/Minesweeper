@@ -55,7 +55,7 @@ public void displayLosingMessage()
       }
     fill(244, 8, 9);
     text("You Lose", 200, 200);
-    noLoop();
+    //noLoop();
 }
 public void displayWinningMessage()
 {
