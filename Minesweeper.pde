@@ -135,9 +135,9 @@ public class MSButton
     }
     
     public void draw () {
-       background( 0 );
-       if(isWon() == true)
-       displayWinningMessage();
+      background( 0 );
+      if(isWon() == true)
+         displayWinningMessage();
       fill(0, 90, 150);
       if (cantChange == true) {
             //if you already clicked on the tile, the color stays the same, whiteish gray
