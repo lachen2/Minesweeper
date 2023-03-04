@@ -31,12 +31,12 @@ public void setMines()
     }
 }
 
-/*public void draw ()
+public void draw ()
 {
     background( 0 );
     if(isWon() == true)
         displayWinningMessage();
-}*/
+}
 public boolean isWon()
 {
     for (int r = 0; r < NUM_ROWS; r ++) {
@@ -135,9 +135,6 @@ public class MSButton
     }
     
     public void draw () {
-      background( 0 );
-      if(isWon() == true)
-         displayWinningMessage();
       fill(0, 90, 150);
       if (cantChange == true) {
             //if you already clicked on the tile, the color stays the same, whiteish gray
